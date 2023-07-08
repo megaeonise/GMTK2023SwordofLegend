@@ -1,9 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://g6kd448lq21b"]
+[gd_scene load_steps=18 format=3 uid="uid://g6kd448lq21b"]
 
 [ext_resource type="Texture2D" uid="uid://b4m852yp60fq8" path="res://Characters/Sprites/hero walking.png" id="1_gooaj"]
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_icnu4"]
+[ext_resource type="Texture2D" uid="uid://c8v5hu5et07n6" path="res://Characters/Sprites/hero running.png" id="2_4fpsp"]
 [ext_resource type="Script" path="res://Characters/Sword.gd" id="2_oj5jn"]
 [ext_resource type="Texture2D" uid="uid://la2yrgtk7qwt" path="res://Characters/Sprites/sword static.png" id="3_gnds5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vunm"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hcov"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypdgp"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k3u6"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ta7f"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ja1e3"]
 atlas = ExtResource("1_gooaj")
@@ -23,9 +44,29 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7fd76"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vunm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hcov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypdgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k3u6")
+}],
 "loop": true,
 "name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ta7f")
+}],
+"loop": true,
+"name": &"stand",
 "speed": 5.0
 }, {
 "frames": [{
@@ -46,18 +87,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ws4"]
+size = Vector2(18, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p0km"]
+size = Vector2(29, 20)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_icnu4")
 
 [node name="HeroSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7fd76")
-animation = &"walk"
+animation = &"stand"
+
+[node name="HeroCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_l6ws4")
 
 [node name="Sword" type="CharacterBody2D" parent="."]
+position = Vector2(8, 0)
 script = ExtResource("2_oj5jn")
 
 [node name="TempSword" type="Sprite2D" parent="Sword"]
 position = Vector2(16, 0)
 texture = ExtResource("3_gnds5")
+
+[node name="SwordCollision" type="CollisionShape2D" parent="Sword"]
+position = Vector2(17.5, 0)
+shape = SubResource("RectangleShape2D_6p0km")
+disabled = true
 
 [connection signal="mode_change" from="." to="Sword" method="_on_player_mode_change"]
