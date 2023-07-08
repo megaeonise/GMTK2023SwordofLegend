@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6ar42yots0uv"
-path="res://.godot/imported/hero_walking.png-dafaab9d840f397cfdedf0c55af5a1df.ctex"
+uid="uid://cxwwbn1f1srou"
+path="res://.godot/imported/hero standing with sword and blinking.png-a227a29b95b06fb189450088f40c4666.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/hero_walking.png"
-dest_files=["res://.godot/imported/hero_walking.png-dafaab9d840f397cfdedf0c55af5a1df.ctex"]
+source_file="res://Characters/Sprites/hero standing with sword and blinking.png"
+dest_files=["res://.godot/imported/hero standing with sword and blinking.png-a227a29b95b06fb189450088f40c4666.ctex"]
 
 [params]
 

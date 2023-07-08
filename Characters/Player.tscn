@@ -1,31 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://g6kd448lq21b"]
+[gd_scene load_steps=10 format=3 uid="uid://g6kd448lq21b"]
 
-[ext_resource type="Texture2D" uid="uid://3worsqbiip8l" path="res://TempR/boc rikt.png" id="1_gc2ux"]
+[ext_resource type="Texture2D" uid="uid://b4m852yp60fq8" path="res://Characters/Sprites/hero walking.png" id="1_gooaj"]
+[ext_resource type="Script" path="res://Characters/Player.gd" id="1_icnu4"]
 [ext_resource type="Script" path="res://Characters/Sword.gd" id="2_oj5jn"]
+[ext_resource type="Texture2D" uid="uid://la2yrgtk7qwt" path="res://Characters/Sprites/sword static.png" id="3_gnds5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggpki"]
-size = Vector2(32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja1e3"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi2jl"]
-size = Vector2(32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxjya"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acvvw"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx1y6"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7fd76"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja1e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxjya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acvvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx1y6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_icnu4")
 
-[node name="TempBox" type="Sprite2D" parent="."]
-texture = ExtResource("1_gc2ux")
-
-[node name="TempCharCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ggpki")
+[node name="HeroSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7fd76")
+animation = &"walk"
 
 [node name="Sword" type="CharacterBody2D" parent="."]
 script = ExtResource("2_oj5jn")
 
 [node name="TempSword" type="Sprite2D" parent="Sword"]
-position = Vector2(72, -16)
-texture = ExtResource("1_gc2ux")
-
-[node name="TempSwordCollider" type="CollisionShape2D" parent="Sword"]
-position = Vector2(72, -16)
-shape = SubResource("RectangleShape2D_wi2jl")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(16, 0)
+texture = ExtResource("3_gnds5")
