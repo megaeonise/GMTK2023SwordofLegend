@@ -7,8 +7,9 @@ func _physics_process(delta):
 
 func sword_move():
 	var character = get_parent().get_position()
-	var mouse = get_viewport().get_mouse_position()
-	if sqrt(mouse.x-character.x*mouse.x-character.x + mouse.y-character.y*mouse.y-character.y)<=100:
-		position = mouse
+	var mouse = get_parent().get_local_mouse_position()
+	if sqrt(abs(mouse.x-character.x*mouse.x-character.x) + abs(mouse.y-character.y*mouse.y-character.y))<=15 and sqrt(abs(mouse.x-character.x*mouse.x-character.x) + abs(mouse.y-character.y*mouse.y-character.y))>=10:
+		position.x = mouse.x
+		position.y = mouse.y
 		
 		

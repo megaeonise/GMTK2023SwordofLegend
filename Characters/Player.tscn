@@ -27,3 +27,5 @@ texture = ExtResource("1_gc2ux")
 [node name="TempSwordCollider" type="CollisionShape2D" parent="Sword"]
 position = Vector2(72, -16)
 shape = SubResource("RectangleShape2D_wi2jl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
