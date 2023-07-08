@@ -1,17 +1,22 @@
 extends CharacterBody2D
 
+var sword_mode = -1
 var speed = 200
 
 func _physics_process(delta):
+	velocity = Vector2(0,0)
 	sword_move()
 	move_and_slide()
 
 func sword_move():
-	var character = get_parent().get_position()
-	var mouse = get_parent().get_local_mouse_position()
-#	var sword_distance = sqrt(abs(mouse.x-character.x*mouse.x-character.x) + abs(mouse.y-character.y*mouse.y-character.y))
-#	if sword_distance<=20 and sword_distance>=10:
-#		position.x = mouse.x
-#		position.y = mouse.y
-	var direction = (mouse - position).normalized()
-	velocity = (direction * speed)
+	if sword_mode==1:
+		var character = get_parent().get_position()
+		var mouse = get_parent().get_local_mouse_position()
+		print(character, mouse)
+		if sqrt(abs(mouse.x-character.x*mouse.x-character.x) + abs(mouse.y-character.y*mouse.y-character.y))<=500:
+			print(sqrt(abs(mouse.x-character.x*mouse.x-character.x) + abs(mouse.y-character.y*mouse.y-character.y)))
+			position = mouse
+
+
+func _on_player_mode_change(mode):
+	sword_mode = mode
