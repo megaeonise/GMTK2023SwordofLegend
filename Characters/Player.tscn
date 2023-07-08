@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://g6kd448lq21b"]
+
+[ext_resource type="Texture2D" uid="uid://3worsqbiip8l" path="res://TempR/boc rikt.png" id="1_gc2ux"]
+[ext_resource type="Script" path="res://Characters/Sword.gd" id="2_oj5jn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggpki"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi2jl"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="TempBox" type="Sprite2D" parent="."]
+texture = ExtResource("1_gc2ux")
+
+[node name="TempCharCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ggpki")
+
+[node name="Sword" type="CharacterBody2D" parent="."]
+script = ExtResource("2_oj5jn")
+
+[node name="TempSword" type="Sprite2D" parent="Sword"]
+position = Vector2(72, -16)
+texture = ExtResource("1_gc2ux")
+
+[node name="TempSwordCollider" type="CollisionShape2D" parent="Sword"]
+position = Vector2(72, -16)
+shape = SubResource("RectangleShape2D_wi2jl")
