@@ -1,5 +1,6 @@
 extends CharacterBody2D
 signal mode_change(mode)
+signal attack(damage)
 var speed = 200
 #regular = -1, chained = 1
 var mode = -1

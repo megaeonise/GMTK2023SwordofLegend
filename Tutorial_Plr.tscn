@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqqboyhdfq1ue"]
+[gd_scene load_steps=3 format=3 uid="uid://q23e78cc1a0f"]
 
-[ext_resource type="PackedScene" uid="uid://cjmev8unctyfj" path="res://tilemap_collisions.tscn" id="1_q5ta0"]
+[ext_resource type="PackedScene" path="res://tilemap_collisions.tscn" id="1_q5ta0"]
 [ext_resource type="PackedScene" uid="uid://g6kd448lq21b" path="res://Characters/Player.tscn" id="2_v5dpw"]
 
 [node name="Node2D" instance=ExtResource("1_q5ta0")]

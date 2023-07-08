@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_icnu4"]
 [ext_resource type="Texture2D" uid="uid://c8v5hu5et07n6" path="res://Characters/Sprites/hero running.png" id="2_4fpsp"]
 [ext_resource type="Script" path="res://Characters/Sword.gd" id="2_oj5jn"]
-[ext_resource type="Texture2D" uid="uid://b4bvedg2rmx7n" path="res://Characters/Sprites/hero cowering.png" id="2_usldw"]
-[ext_resource type="Texture2D" uid="uid://cykf2judrhy3x" path="res://Characters/Sprites/Hero getting dragged.png" id="3_8qwyt"]
+[ext_resource type="Texture2D" path="res://Characters/Sprites/hero cowering.png" id="2_usldw"]
+[ext_resource type="Texture2D" path="res://Characters/Sprites/Hero getting dragged.png" id="3_8qwyt"]
 [ext_resource type="Texture2D" uid="uid://la2yrgtk7qwt" path="res://Characters/Sprites/sword static.png" id="3_gnds5"]
-[ext_resource type="Texture2D" uid="uid://i6nnfb586dv0" path="res://Characters/Sprites/Hero hanging in midair.png" id="4_xuqtb"]
-[ext_resource type="Texture2D" uid="uid://b7wwl2oumg4ot" path="res://Characters/Sprites/hero sleeping.png" id="6_1nncu"]
+[ext_resource type="Texture2D" path="res://Characters/Sprites/Hero hanging in midair.png" id="4_xuqtb"]
+[ext_resource type="Texture2D" path="res://Characters/Sprites/hero sleeping.png" id="6_1nncu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bb0wl"]
 atlas = ExtResource("2_usldw")
@@ -209,6 +209,9 @@ texture = ExtResource("3_gnds5")
 [node name="SwordCollision" type="CollisionShape2D" parent="Sword"]
 shape = SubResource("RectangleShape2D_6p0km")
 disabled = true
+
+[node name="Attack Timer" type="Timer" parent="Sword/SwordCollision"]
+wait_time = 0.334
 
 [node name="Upgrade" type="Node2D" parent="."]
 

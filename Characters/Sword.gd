@@ -35,6 +35,8 @@ func sword_move():
 ##			if global_sword.distance_to(global_hero)>radius:
 ##				position = (direction*radius)
 
+func sword_attack():
+	pass
 
 	else:
 		get_node('SwordCollision').set_disabled(true)
