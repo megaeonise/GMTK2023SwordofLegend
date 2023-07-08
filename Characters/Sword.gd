@@ -14,6 +14,8 @@ func _physics_process(delta):
 
 func sword_move():
 	if sword_mode==1:
+		get_node('SwordCollision').set_disabled(false)
+		self.add_collision_exception_with(get_node('HeroSprite'))
 		var mouse_pos = get_global_mouse_position()
 		var player_pos = get_parent().global_transform.origin 
 		var distance = player_pos.distance_to(mouse_pos) 
@@ -22,10 +24,13 @@ func sword_move():
 			mouse_pos = player_pos + (mouse_dir * radius)
 		global_transform.origin = mouse_pos
 		if position.y > player_pos.y:
-			position.y = player_pos.y+5
+			position.y = player_pos.y+8
 
 func sword_attack():
 	pass
+
+#	else:
+#		get_node('SwordCollision').set_disabled(true)
 
 
 func _on_player_mode_change(mode):
