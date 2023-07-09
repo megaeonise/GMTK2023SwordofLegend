@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://g6kd448lq21b"]
+[gd_scene load_steps=46 format=3 uid="uid://g6kd448lq21b"]
 
 [ext_resource type="Texture2D" uid="uid://b4m852yp60fq8" path="res://Characters/Sprites/hero walking.png" id="1_gooaj"]
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_icnu4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://la2yrgtk7qwt" path="res://Characters/Sprites/sword static.png" id="3_gnds5"]
 [ext_resource type="Texture2D" uid="uid://i6nnfb586dv0" path="res://Characters/Sprites/Hero hanging in midair.png" id="4_xuqtb"]
 [ext_resource type="Texture2D" uid="uid://b7wwl2oumg4ot" path="res://Characters/Sprites/hero sleeping.png" id="6_1nncu"]
+[ext_resource type="Texture2D" uid="uid://c123r5t8knbo4" path="res://Characters/Sprites/sword attack.png" id="9_iok3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bb0wl"]
 atlas = ExtResource("2_usldw")
@@ -187,6 +188,118 @@ size = Vector2(18, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6p0km"]
 size = Vector2(29, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_untwk"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anvd1"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4jpe"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wqbr"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6p0j"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd5q7"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsm17"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3u77v"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i4xt"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(480, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6srl7"]
+atlas = ExtResource("3_gnds5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41uc3"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5847o"]
+atlas = ExtResource("9_iok3l")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6olu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_untwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anvd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4jpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wqbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6p0j")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd5q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsm17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3u77v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i4xt")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6srl7")
+}],
+"loop": false,
+"name": &"static",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41uc3")
+}],
+"loop": true,
+"name": &"static2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5847o")
+}],
+"loop": true,
+"name": &"static3",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_icnu4")
 
@@ -202,17 +315,22 @@ shape = SubResource("RectangleShape2D_l6ws4")
 position = Vector2(40, 0)
 script = ExtResource("2_oj5jn")
 
-[node name="TempSword" type="Sprite2D" parent="Sword"]
-texture_filter = 1
-texture = ExtResource("3_gnds5")
-
 [node name="SwordCollision" type="CollisionShape2D" parent="Sword"]
 shape = SubResource("RectangleShape2D_6p0km")
 disabled = true
 
-[node name="Attack Timer" type="Timer" parent="Sword/SwordCollision"]
-wait_time = 0.334
+[node name="SwordSprite" type="AnimatedSprite2D" parent="Sword"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_c6olu")
+animation = &"static3"
+speed_scale = 1.7
+
+[node name="Buffer" type="Timer" parent="Sword"]
+wait_time = 0.9
+one_shot = true
 
 [node name="Upgrade" type="Node2D" parent="."]
 
 [connection signal="mode_change" from="." to="Sword" method="_on_player_mode_change"]
+[connection signal="animation_finished" from="Sword/SwordSprite" to="Sword" method="_on_sword_sprite_animation_finished"]
+[connection signal="timeout" from="Sword/Buffer" to="Sword" method="_on_buffer_timeout"]

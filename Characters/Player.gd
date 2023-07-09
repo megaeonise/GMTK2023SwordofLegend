@@ -1,6 +1,5 @@
 extends CharacterBody2D
 signal mode_change(mode)
-signal attack(damage)
 var speed = 200
 #regular = -1, chained = 1
 var mode = -1
@@ -87,9 +86,9 @@ func direction_finder():
 	var local_mouse = get_local_mouse_position()
 	if local_mouse.x<0:
 		get_node("HeroSprite").set_flip_h(true)
-		get_node("Sword/TempSword").set_flip_h(true)
+		get_node("Sword/SwordSprite").set_flip_h(true)
 	else:
 		get_node('HeroSprite').set_flip_h(false)
-		get_node("Sword/TempSword").set_flip_h(false)
+		get_node("Sword/SwordSprite").set_flip_h(false)
 
 
