@@ -1,0 +1,215 @@
+[gd_scene load_steps=32 format=3 uid="uid://g6kd448lq21b"]
+
+[ext_resource type="Texture2D" uid="uid://b4m852yp60fq8" path="res://Characters/Sprites/hero walking.png" id="1_gooaj"]
+[ext_resource type="Script" path="res://Characters/Player.gd" id="1_icnu4"]
+[ext_resource type="Texture2D" uid="uid://c8v5hu5et07n6" path="res://Characters/Sprites/hero running.png" id="2_4fpsp"]
+[ext_resource type="Script" path="res://Characters/Sword.gd" id="2_oj5jn"]
+[ext_resource type="Texture2D" uid="uid://b4bvedg2rmx7n" path="res://Characters/Sprites/hero cowering.png" id="2_usldw"]
+[ext_resource type="Texture2D" uid="uid://cykf2judrhy3x" path="res://Characters/Sprites/Hero getting dragged.png" id="3_8qwyt"]
+[ext_resource type="Texture2D" uid="uid://la2yrgtk7qwt" path="res://Characters/Sprites/sword static.png" id="3_gnds5"]
+[ext_resource type="Texture2D" uid="uid://i6nnfb586dv0" path="res://Characters/Sprites/Hero hanging in midair.png" id="4_xuqtb"]
+[ext_resource type="Texture2D" uid="uid://b7wwl2oumg4ot" path="res://Characters/Sprites/hero sleeping.png" id="6_1nncu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb0wl"]
+atlas = ExtResource("2_usldw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgn3p"]
+atlas = ExtResource("2_usldw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsals"]
+atlas = ExtResource("3_8qwyt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j172l"]
+atlas = ExtResource("3_8qwyt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohoav"]
+atlas = ExtResource("3_8qwyt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de3of"]
+atlas = ExtResource("4_xuqtb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujbqu"]
+atlas = ExtResource("4_xuqtb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5478o"]
+atlas = ExtResource("4_xuqtb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vunm"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hcov"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypdgp"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k3u6"]
+atlas = ExtResource("2_4fpsp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iekf4"]
+atlas = ExtResource("6_1nncu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xet6g"]
+atlas = ExtResource("6_1nncu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ta7f"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja1e3"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxjya"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acvvw"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx1y6"]
+atlas = ExtResource("1_gooaj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7fd76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb0wl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgn3p")
+}],
+"loop": true,
+"name": &"cower",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsals")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j172l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohoav")
+}],
+"loop": true,
+"name": &"drag",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de3of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujbqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5478o")
+}],
+"loop": true,
+"name": &"hang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vunm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hcov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypdgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k3u6")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iekf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xet6g")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ta7f")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja1e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxjya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acvvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx1y6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ws4"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p0km"]
+size = Vector2(29, 20)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_icnu4")
+
+[node name="HeroSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7fd76")
+animation = &"stand"
+
+[node name="HeroCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l6ws4")
+
+[node name="Sword" type="CharacterBody2D" parent="."]
+position = Vector2(40, 0)
+script = ExtResource("2_oj5jn")
+
+[node name="TempSword" type="Sprite2D" parent="Sword"]
+texture_filter = 1
+texture = ExtResource("3_gnds5")
+
+[node name="SwordCollision" type="CollisionShape2D" parent="Sword"]
+shape = SubResource("RectangleShape2D_6p0km")
+disabled = true
+
+[node name="Upgrade" type="Node2D" parent="."]
+
+[connection signal="mode_change" from="." to="Sword" method="_on_player_mode_change"]
