@@ -9,9 +9,9 @@ var on_ground = false
 #sword length/dmg, chain length, grip strength
 var upgrade_arr = [0,0,0]
 
-var length_up = 1
-var grip_up = 1
-var chain_up = 1
+#var length_up = 1
+#var grip_up = 1
+#var chain_up = 1
 
 func _ready():
 	add_collision_exception_with(get_node('Sword'))
@@ -47,11 +47,12 @@ func sword_move():
 	
 	#GRIP IS SET HERE!!!
 	if is_on_floor():
-		grip = 25
+		#into grip upgrade
+		grip = 25+25*(upgrade_arr[2]/2)
 		on_ground = true
 	
 	if Input.is_action_just_pressed("Right_Click") and on_ground==true:
-		get_node('Sword').set_position(Vector2(0,0))
+		get_node('Sword').set_position(Vector2(5,0))
 		mode*=-1
 		mode_change.emit(mode)
 	

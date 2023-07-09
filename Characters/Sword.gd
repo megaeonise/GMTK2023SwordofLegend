@@ -6,6 +6,9 @@ var speed = 1000
 var radius = 50
 var attack_anim = 0
 
+#@onready var player_var = get_node("/root/Player")
+#var upgrade_arr = player_var.upgrade_arr
+
 
 
 func _physics_process(delta):
@@ -28,6 +31,8 @@ func sword_move():
 		global_transform.origin = mouse_pos
 		if position.y > player_pos.y:
 			position.y = player_pos.y+8
+	else:
+		get_node('SwordCollision').set_disabled(true)
 
 func sword_attack():
 	if sword_mode ==1:
@@ -41,10 +46,10 @@ func sword_attack():
 					get_node('SwordSprite').play('attack2')
 					attack_anim = 0
 		if get_node('SwordSprite').animation == 'attack' and get_node('SwordSprite').frame>=2 and get_node('SwordSprite').frame<=3:
-			attack.emit(1)
+#			attack.emit(1+upgrade_arr[1])
 			print('down')
 		if get_node('SwordSprite').animation == 'attack2' and get_node('SwordSprite').frame>=1 and get_node('SwordSprite').frame<=2:
-			attack.emit(1)
+#			attack.emit(1+upgrade_arr[1])
 			print('up')
 			
 
