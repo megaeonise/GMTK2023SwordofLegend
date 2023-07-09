@@ -43,12 +43,10 @@ func sword_attack():
 				else:
 					get_node('SwordSprite').play('attack2')
 					attack_anim = 0
-		if get_node('SwordSprite').animation == 'attack' and get_node('SwordSprite').frame>=2 and get_node('SwordSprite').frame<=4:
+		if get_node('SwordSprite').animation == 'attack' and get_node('SwordSprite').frame>=2 and get_node('SwordSprite').frame<=3:
 			attack.emit(1+(VariableStore.length_upgrade*0.5))
 			get_node('SwordCollision').set_disabled(false)
-		else:
-			get_node('SwordCollision').set_disabled(true)
-		if get_node('SwordSprite').animation == 'attack2' and get_node('SwordSprite').frame>=1 and get_node('SwordSprite').frame<=3:
+		elif get_node('SwordSprite').animation == 'attack2' and get_node('SwordSprite').frame>=1 and get_node('SwordSprite').frame<=2:
 			attack.emit(1+(VariableStore.length_upgrade*0.5))
 			get_node('SwordCollision').set_disabled(false)
 		else:

@@ -7,6 +7,7 @@ var gravity = 200
 var grip = 0
 var on_ground = false
 var hp = 3
+var left = false
 #sword length/dmg, chain length, grip strength
 var points = VariableStore.upgrade_points
 var upgrade_arr = [VariableStore.length_upgrade,VariableStore.range_upgrade,VariableStore.grip_upgrade]
@@ -22,6 +23,8 @@ func _physics_process(delta):
 	sword_move()
 	move_and_slide()
 	direction_finder()
+	if hp<=0:
+		queue_free()
 	
 #	if Input.is_action_just_pressed('ui_select'):
 #		print(upgrade_arr)
@@ -53,7 +56,10 @@ func sword_move():
 		on_ground = true
 	
 	if Input.is_action_just_pressed("Right_Click") and on_ground==true:
-		get_node('Sword').set_position(Vector2(5,0))
+		if not left:
+			get_node('Sword').set_position(Vector2(16,-5))
+		else:
+			get_node('Sword').set_position(Vector2(-16,-5))
 		mode*=-1
 		mode_change.emit(mode)
 	
@@ -61,6 +67,10 @@ func sword_move():
 		get_node('HeroSprite').play('cower')
 	
 	if mode==-1:
+		if not left:
+			get_node('Sword').set_position(Vector2(16,-5))
+		else:
+			get_node('Sword').set_position(Vector2(-16,-5))
 		get_node('Sword/SwordSprite').play('static')
 		get_node('Sword/SwordSprite').pause()
 		if abs(distance_to_mouse.x)>=10:
@@ -100,10 +110,16 @@ func sword_move():
 func direction_finder():
 	var local_mouse = get_local_mouse_position()
 	if local_mouse.x<0:
+		left = true
 		get_node("HeroSprite").set_flip_h(true)
 		get_node("Sword/SwordSprite").set_flip_h(true)
 	else:
+		left = false
 		get_node('HeroSprite').set_flip_h(false)
 		get_node("Sword/SwordSprite").set_flip_h(false)
 
 
+
+
+func _on_mushroom_player_damage():
+	hp-=1
