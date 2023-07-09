@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://uoxyxvu5jm3e"]
+[gd_scene load_steps=7 format=3 uid="uid://uoxyxvu5jm3e"]
 
+[ext_resource type="PackedScene" uid="uid://g6kd448lq21b" path="res://Characters/Player.tscn" id="1_i608c"]
 [ext_resource type="Texture2D" uid="uid://bw8cjgw5qymvu" path="res://Tiles.png" id="1_kotps"]
 [ext_resource type="Texture2D" uid="uid://bpuvyqdl4ogwy" path="res://sky background.png" id="1_q20mb"]
 
@@ -1277,3 +1278,12 @@ layer_1/tile_data = PackedInt32Array(65500, 1114112, 16, -36, 1114112, 15, -37, 
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.949434, 0.777483)
+
+[node name="UpgradeMenu" parent="." instance=ExtResource("3_odwn5")]
+offset_left = -424.0
+offset_top = -168.0
+offset_right = -342.0
+offset_bottom = -137.0
+
+[node name="Mushroom" parent="." instance=ExtResource("4_aglxt")]
+position = Vector2(152, -112)

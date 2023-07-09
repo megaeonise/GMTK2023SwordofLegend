@@ -6,10 +6,14 @@ var mode = -1
 var gravity = 200
 var grip = 0
 var on_ground = false
-
-var length_up = 1
-var grip_up = 1
-var chain_up = 1
+var hp = 3
+var left = false
+#sword length/dmg, chain length, grip strength
+var points = VariableStore.upgrade_points
+var upgrade_arr = [VariableStore.length_upgrade,VariableStore.range_upgrade,VariableStore.grip_upgrade]
+#var length_up = 1
+#var grip_up = 1
+#var chain_up = 1
 
 func _ready():
 	add_collision_exception_with(get_node('Sword'))
@@ -19,6 +23,16 @@ func _physics_process(delta):
 	sword_move()
 	move_and_slide()
 	direction_finder()
+	if hp<=0:
+		queue_free()
+	
+#	if Input.is_action_just_pressed('ui_select'):
+#		print(upgrade_arr)
+#
+#	if Input.is_action_just_pressed('ui_accept'):
+#		print('tong')
+#		for i in range(3):
+#			upgrade_arr[i]+=1
 	
 	
 func sword_move():
@@ -26,6 +40,7 @@ func sword_move():
 	var mouse = get_global_mouse_position()
 	var distance_to_mouse = mouse-character
 	var local_mouse = get_local_mouse_position()
+	
 	
 	if not on_ground:
 		if grip>0:
@@ -36,11 +51,15 @@ func sword_move():
 	
 	#GRIP IS SET HERE!!!
 	if is_on_floor():
-		grip = 25
+		#into grip upgrade
+		grip = 25+25*(upgrade_arr[2]/2)
 		on_ground = true
 	
 	if Input.is_action_just_pressed("Right_Click") and on_ground==true:
-		get_node('Sword').set_position(Vector2(0,0))
+		if not left:
+			get_node('Sword').set_position(Vector2(16,-5))
+		else:
+			get_node('Sword').set_position(Vector2(-16,-5))
 		mode*=-1
 		mode_change.emit(mode)
 	
@@ -48,6 +67,12 @@ func sword_move():
 		get_node('HeroSprite').play('cower')
 	
 	if mode==-1:
+		if not left:
+			get_node('Sword').set_position(Vector2(16,-5))
+		else:
+			get_node('Sword').set_position(Vector2(-16,-5))
+		get_node('Sword/SwordSprite').play('static')
+		get_node('Sword/SwordSprite').pause()
 		if abs(distance_to_mouse.x)>=10:
 			if Input.is_action_pressed('Left_Click'):
 				if mouse.y<position.y-100 and grip>0:
@@ -85,10 +110,27 @@ func sword_move():
 func direction_finder():
 	var local_mouse = get_local_mouse_position()
 	if local_mouse.x<0:
+		left = true
 		get_node("HeroSprite").set_flip_h(true)
-		get_node("Sword/TempSword").set_flip_h(true)
+		get_node("Sword/SwordSprite").set_flip_h(true)
 	else:
+		left = false
 		get_node('HeroSprite').set_flip_h(false)
-		get_node("Sword/TempSword").set_flip_h(false)
+		get_node("Sword/SwordSprite").set_flip_h(false)
 
 
+
+#
+#func _on_mushroom_player_damage():
+#	hp-=1
+
+
+func _on_projectile_area_entered(area):
+	hp-=1
+
+
+func _on_sword_parry():
+	$HitStop.start()
+	Engine.time_scale = 0.04
+	await $HitStop.timeout
+	Engine.time_scale = 1

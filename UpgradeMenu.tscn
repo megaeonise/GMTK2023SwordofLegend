@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bggqobs0nimuh"]
+
+[ext_resource type="Script" path="res://UpgradeMenu.gd" id="1_l4ijs"]
+
+[node name="UpgradeMenu" type="MenuButton"]
+text = "Upgrades"
+script = ExtResource("1_l4ijs")
+
+[node name="Upgrades" type="PopupMenu" parent="."]
+
+[node name="Status" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="id_pressed" from="Upgrades" to="." method="_on_upgrades_id_pressed"]
