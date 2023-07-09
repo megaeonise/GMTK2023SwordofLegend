@@ -25,7 +25,7 @@ func _physics_process(delta):
 	direction_finder()
 	if hp<=0:
 		queue_free()
-	
+
 #	if Input.is_action_just_pressed('ui_select'):
 #		print(upgrade_arr)
 #
@@ -33,28 +33,28 @@ func _physics_process(delta):
 #		print('tong')
 #		for i in range(3):
 #			upgrade_arr[i]+=1
-	
-	
+
+
 func sword_move():
 	var character = get_position()
 	var mouse = get_global_mouse_position()
 	var distance_to_mouse = mouse-character
 	var local_mouse = get_local_mouse_position()
-	
-	
+
+
 	if not on_ground:
 		if grip>0:
 			grip-=1
-		
+
 	if grip==0:
 		gravity = 200
-	
+
 	#GRIP IS SET HERE!!!
 	if is_on_floor():
 		#into grip upgrade
 		grip = 25+25*(upgrade_arr[2]/2)
 		on_ground = true
-	
+
 	if Input.is_action_just_pressed("Right_Click") and on_ground==true:
 		if not left:
 			get_node('Sword').set_position(Vector2(16,-5))
@@ -62,10 +62,10 @@ func sword_move():
 			get_node('Sword').set_position(Vector2(-16,-5))
 		mode*=-1
 		mode_change.emit(mode)
-	
+
 	if mode==1:
 		get_node('HeroSprite').play('cower')
-	
+
 	if mode==-1:
 		if not left:
 			get_node('Sword').set_position(Vector2(16,-5))

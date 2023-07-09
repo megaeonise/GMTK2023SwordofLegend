@@ -12,7 +12,7 @@ signal player_damage()
 
 func _ready():
 	self.add_collision_exception_with($Projectile)
-	
+
 
 func _physics_process(delta):
 	if hp<=0:
@@ -45,7 +45,7 @@ func shoot():
 		get_node('MushroomSprite').set_flip_h(false)
 		get_node("Projectile/ProjectileSprite").set_flip_h(false)
 
-	
+
 
 func _on_timeout_timeout():
 	$Projectile.position = Vector2(0,0)

@@ -21,8 +21,8 @@ func sword_move():
 #		get_node('SwordCollision').set_disabled(false)
 #		self.add_collision_exception_with(get_node('HeroSprite'))
 		var mouse_pos = get_global_mouse_position()
-		var player_pos = get_parent().global_transform.origin 
-		var distance = player_pos.distance_to(mouse_pos) 
+		var player_pos = get_parent().global_transform.origin
+		var distance = player_pos.distance_to(mouse_pos)
 		var mouse_dir = (mouse_pos-player_pos).normalized()
 		if distance > radius:
 			mouse_pos = player_pos + (mouse_dir * radius)

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cykf2judrhy3x" path="res://Characters/Sprites/Hero getting dragged.png" id="3_8qwyt"]
 [ext_resource type="Texture2D" uid="uid://i6nnfb586dv0" path="res://Characters/Sprites/Hero hanging in midair.png" id="4_xuqtb"]
 [ext_resource type="Texture2D" uid="uid://b7wwl2oumg4ot" path="res://Characters/Sprites/hero sleeping.png" id="6_1nncu"]
-[ext_resource type="PackedScene" uid="uid://dusd1ag2eelh" path="res://sword.tscn" id="8_unkfd"]
+[ext_resource type="Texture2D" uid="uid://dp8c73xysx3lq" path="res://Characters/Sprites/sword attack-Sheet.png" id="9_udiev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bb0wl"]
 atlas = ExtResource("2_usldw")
@@ -183,6 +183,121 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ws4"]
 size = Vector2(18, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p0km"]
+size = Vector2(7.25, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwpbc"]
+atlas = ExtResource("9_udiev")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aufa1"]
+atlas = ExtResource("9_udiev")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vth1r"]
+atlas = ExtResource("9_udiev")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inbtr"]
+atlas = ExtResource("9_udiev")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k34ul"]
+atlas = ExtResource("9_udiev")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tvjb"]
+atlas = ExtResource("9_udiev")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lym7"]
+atlas = ExtResource("9_udiev")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goxdv"]
+atlas = ExtResource("9_udiev")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5uje"]
+atlas = ExtResource("9_udiev")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6srl7"]
+atlas = ExtResource("3_gnds5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ywwi"]
+atlas = ExtResource("9_udiev")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ysdw"]
+atlas = ExtResource("9_udiev")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6olu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwpbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aufa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vth1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inbtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k34ul")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tvjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lym7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goxdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5uje")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6srl7")
+}],
+"loop": false,
+"name": &"static",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ywwi")
+}],
+"loop": true,
+"name": &"static2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ysdw")
+}],
+"loop": true,
+"name": &"static3",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_icnu4")
 
@@ -194,4 +309,25 @@ animation = &"stand"
 [node name="HeroCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l6ws4")
 
-[node name="Sword" parent="." instance=ExtResource("8_unkfd")]
+[node name="Sword" type="Area2D" parent="."]
+position = Vector2(40, 0)
+script = ExtResource("2_oj5jn")
+
+[node name="SwordCollision" type="CollisionShape2D" parent="Sword"]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_6p0km")
+disabled = true
+
+[node name="SwordSprite" type="AnimatedSprite2D" parent="Sword"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_c6olu")
+animation = &"static3"
+speed_scale = 1.7
+
+[node name="Buffer" type="Timer" parent="Sword"]
+wait_time = 0.9
+one_shot = true
+
+[connection signal="mode_change" from="." to="Sword" method="_on_player_mode_change"]
+[connection signal="animation_finished" from="Sword/SwordSprite" to="Sword" method="_on_sword_sprite_animation_finished"]
+[connection signal="timeout" from="Sword/Buffer" to="Sword" method="_on_buffer_timeout"]
