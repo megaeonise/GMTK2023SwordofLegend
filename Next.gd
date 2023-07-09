@@ -1,5 +1,4 @@
 extends Node2D
-
 var current = ''
 
 func _ready():

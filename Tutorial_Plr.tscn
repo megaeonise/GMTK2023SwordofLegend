@@ -19,7 +19,17 @@ texture = ExtResource("4_w7id8")
 shape = SubResource("RectangleShape2D_dhee1")
 
 [node name="Player" parent="." index="1"]
-position = Vector2(352, -104)
+position = Vector2(224, -24)
+
+[node name="Sword" parent="Player" index="2"]
+position = Vector2(-32, 0)
+
+[node name="SwordCollision" parent="Player/Sword" index="0"]
+position = Vector2(0, 0)
+disabled = false
+
+[node name="SwordSprite" parent="Player/Sword" index="1"]
+animation = &"attack2"
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 zoom = Vector2(1.5, 1.5)
@@ -50,5 +60,8 @@ offset_bottom = 0.0
 [connection signal="body_entered" from="Next" to="Next" method="_on_body_entered"]
 [connection signal="attack" from="Player/Sword" to="Mushroom" method="_on_sword_attack"]
 [connection signal="body_entered" from="Player/Sword" to="Mushroom" method="_on_sword_body_entered"]
+[connection signal="player_damage" from="Mushroom" to="Player" method="_on_mushroom_player_damage"]
 
 [editable path="Player"]
+[editable path="Player/Sword"]
+[editable path="Mushroom"]
