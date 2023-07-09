@@ -6,9 +6,10 @@ var mode = -1
 var gravity = 200
 var grip = 0
 var on_ground = false
+var hp = 3
 #sword length/dmg, chain length, grip strength
-var upgrade_arr = [0,0,0]
-
+var points = VariableStore.upgrade_points
+var upgrade_arr = [VariableStore.length_upgrade,VariableStore.range_upgrade,VariableStore.grip_upgrade]
 #var length_up = 1
 #var grip_up = 1
 #var chain_up = 1
@@ -22,13 +23,13 @@ func _physics_process(delta):
 	move_and_slide()
 	direction_finder()
 	
-	if Input.is_action_just_pressed('ui_select'):
-		print(upgrade_arr)
-	
-	if Input.is_action_just_pressed('ui_accept'):
-		print('tong')
-		for i in range(3):
-			upgrade_arr[i]+=1
+#	if Input.is_action_just_pressed('ui_select'):
+#		print(upgrade_arr)
+#
+#	if Input.is_action_just_pressed('ui_accept'):
+#		print('tong')
+#		for i in range(3):
+#			upgrade_arr[i]+=1
 	
 	
 func sword_move():

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 signal attack(damage)
 var sword_mode = -1
@@ -13,15 +13,13 @@ var attack_anim = 0
 
 func _physics_process(delta):
 	var mouse = get_parent().get_local_mouse_position()
-	velocity = Vector2(0,0)
 	sword_move()
 	sword_attack()
-	move_and_slide()
 
 func sword_move():
 	if sword_mode==1:
-		get_node('SwordCollision').set_disabled(false)
-		self.add_collision_exception_with(get_node('HeroSprite'))
+#		get_node('SwordCollision').set_disabled(false)
+#		self.add_collision_exception_with(get_node('HeroSprite'))
 		var mouse_pos = get_global_mouse_position()
 		var player_pos = get_parent().global_transform.origin 
 		var distance = player_pos.distance_to(mouse_pos) 
@@ -29,10 +27,10 @@ func sword_move():
 		if distance > radius:
 			mouse_pos = player_pos + (mouse_dir * radius)
 		global_transform.origin = mouse_pos
-		if position.y > player_pos.y:
-			position.y = player_pos.y+8
-	else:
-		get_node('SwordCollision').set_disabled(true)
+		if global_position.y > player_pos.y:
+			global_position.y = player_pos.y-8
+#	else:
+#		get_node('SwordCollision').set_disabled(true)
 
 func sword_attack():
 	if sword_mode ==1:
@@ -45,16 +43,18 @@ func sword_attack():
 				else:
 					get_node('SwordSprite').play('attack2')
 					attack_anim = 0
-		if get_node('SwordSprite').animation == 'attack' and get_node('SwordSprite').frame>=2 and get_node('SwordSprite').frame<=3:
-#			attack.emit(1+upgrade_arr[1])
-			print('down')
-		if get_node('SwordSprite').animation == 'attack2' and get_node('SwordSprite').frame>=1 and get_node('SwordSprite').frame<=2:
-#			attack.emit(1+upgrade_arr[1])
-			print('up')
-			
+		if get_node('SwordSprite').animation == 'attack' and get_node('SwordSprite').frame>=2 and get_node('SwordSprite').frame<=4:
+			attack.emit(1+(VariableStore.length_upgrade*0.5))
+			get_node('SwordCollision').set_disabled(false)
+		else:
+			get_node('SwordCollision').set_disabled(true)
+		if get_node('SwordSprite').animation == 'attack2' and get_node('SwordSprite').frame>=1 and get_node('SwordSprite').frame<=3:
+			attack.emit(1+(VariableStore.length_upgrade*0.5))
+			get_node('SwordCollision').set_disabled(false)
+		else:
+			get_node('SwordCollision').set_disabled(true)
 
-#	else:
-#		get_node('SwordCollision').set_disabled(true)
+
 
 
 func _on_player_mode_change(mode):

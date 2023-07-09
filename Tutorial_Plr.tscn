@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://q23e78cc1a0f"]
+[gd_scene load_steps=5 format=3 uid="uid://q23e78cc1a0f"]
 
 [ext_resource type="PackedScene" uid="uid://cjmev8unctyfj" path="res://tilemap_collisions.tscn" id="1_q5ta0"]
-[ext_resource type="PackedScene" uid="uid://g6kd448lq21b" path="res://Characters/Player.tscn" id="2_v5dpw"]
 [ext_resource type="Script" path="res://Next.gd" id="3_7xs2i"]
 [ext_resource type="Texture2D" uid="uid://3worsqbiip8l" path="res://TempR/boc rikt.png" id="4_w7id8"]
 
@@ -19,8 +18,8 @@ texture = ExtResource("4_w7id8")
 [node name="GoalArea" type="CollisionShape2D" parent="Next" index="1"]
 shape = SubResource("RectangleShape2D_dhee1")
 
-[node name="Player" parent="." index="1" instance=ExtResource("2_v5dpw")]
-position = Vector2(-552, -16)
+[node name="Player" parent="." index="1"]
+position = Vector2(352, -104)
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="3"]
 zoom = Vector2(1.5, 1.5)
@@ -41,4 +40,15 @@ layer_2/tile_data = PackedInt32Array(-196622, 786432, 4, -196617, 786432, 4, -65
 visible = false
 enabled = false
 
+[node name="UpgradeMenu" parent="." index="4"]
+visible = false
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
 [connection signal="body_entered" from="Next" to="Next" method="_on_body_entered"]
+[connection signal="attack" from="Player/Sword" to="Mushroom" method="_on_sword_attack"]
+[connection signal="body_entered" from="Player/Sword" to="Mushroom" method="_on_sword_body_entered"]
+
+[editable path="Player"]

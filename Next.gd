@@ -7,10 +7,8 @@ func _ready():
 	current = current_scene
 
 
-
-
 func _on_body_entered(body):
-	pass
+	VariableStore.upgrade_points +=3
 	match current:
 		'Tutorial_Plr':
 			get_tree().change_scene_to_file('res://Tutorial_Swd.tscn')

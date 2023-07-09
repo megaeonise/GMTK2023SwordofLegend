@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Player="*res://Characters/Player.tscn"
+VariableStore="*res://VariableStore.gd"
 
 [input]
 

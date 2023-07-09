@@ -1,0 +1,166 @@
+[gd_scene load_steps=24 format=3 uid="uid://h5eims7dm7rq"]
+
+[ext_resource type="Texture2D" uid="uid://3lbag2es0li4" path="res://Characters/Sprites/shroom shooting.png" id="1_3wupm"]
+[ext_resource type="Script" path="res://Characters/Mushroom.gd" id="1_cblyr"]
+[ext_resource type="Texture2D" uid="uid://dki0ecxt8kfrf" path="res://Characters/Sprites/shroom walking.png" id="2_665x8"]
+[ext_resource type="Texture2D" uid="uid://ckah7xgdikmrb" path="res://Characters/Sprites/shroom damage.png" id="2_eklts"]
+[ext_resource type="Script" path="res://Characters/Projectile.gd" id="4_3djtc"]
+[ext_resource type="Texture2D" uid="uid://c1j2qiu66ui6t" path="res://Characters/Sprites/shroom projectile.png" id="4_4ysla"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpeqe"]
+atlas = ExtResource("2_eklts")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h282a"]
+atlas = ExtResource("1_3wupm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbubb"]
+atlas = ExtResource("1_3wupm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3wry"]
+atlas = ExtResource("1_3wupm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1wlq"]
+atlas = ExtResource("1_3wupm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgf47"]
+atlas = ExtResource("2_665x8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls7gq"]
+atlas = ExtResource("2_665x8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itbbr"]
+atlas = ExtResource("2_665x8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bojku"]
+atlas = ExtResource("2_665x8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2aql"]
+atlas = ExtResource("2_665x8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aneup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpeqe")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h282a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbubb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3wry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1wlq")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgf47")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls7gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itbbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bojku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2aql")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6g0c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrye4"]
+atlas = ExtResource("4_4ysla")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bpcq"]
+atlas = ExtResource("4_4ysla")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5e2s"]
+atlas = ExtResource("4_4ysla")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vujy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrye4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bpcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5e2s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wu1o"]
+size = Vector2(8, 5)
+
+[node name="Mushroom" type="CharacterBody2D"]
+script = ExtResource("1_cblyr")
+
+[node name="MushroomSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_aneup")
+animation = &"shoot"
+
+[node name="MushroomCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e6g0c")
+
+[node name="Projectile" type="CharacterBody2D" parent="."]
+script = ExtResource("4_3djtc")
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="Projectile"]
+sprite_frames = SubResource("SpriteFrames_vujy6")
+
+[node name="ProjectileCollision" type="CollisionShape2D" parent="Projectile"]
+shape = SubResource("RectangleShape2D_4wu1o")
+
+[node name="Timeout" type="Timer" parent="Projectile"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timeout2" type="Timer" parent="Projectile"]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="Projectile/Timeout" to="." method="_on_timeout_timeout"]
+[connection signal="timeout" from="Projectile/Timeout2" to="." method="_on_timeout_2_timeout"]
