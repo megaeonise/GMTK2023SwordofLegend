@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://uoxyxvu5jm3e"]
+[gd_scene load_steps=5 format=3 uid="uid://uoxyxvu5jm3e"]
 
 [ext_resource type="Texture2D" uid="uid://bw8cjgw5qymvu" path="res://Tiles.png" id="1_kotps"]
+[ext_resource type="Texture2D" uid="uid://bpuvyqdl4ogwy" path="res://sky background.png" id="1_q20mb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_87l3r"]
 texture = ExtResource("1_kotps")
@@ -1254,6 +1255,13 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_87l3r")
 
 [node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -593.0
+offset_top = -472.0
+offset_right = 431.0
+offset_bottom = 44.0
+texture = ExtResource("1_q20mb")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_lp7k1")
