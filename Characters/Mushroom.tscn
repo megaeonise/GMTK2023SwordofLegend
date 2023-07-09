@@ -145,7 +145,7 @@ animation = &"shoot"
 [node name="MushroomCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_e6g0c")
 
-[node name="Projectile" type="CharacterBody2D" parent="."]
+[node name="Projectile" type="Area2D" parent="."]
 script = ExtResource("4_3djtc")
 
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="Projectile"]
@@ -162,6 +162,5 @@ one_shot = true
 wait_time = 4.0
 one_shot = true
 
-[connection signal="collided_with" from="Projectile" to="." method="_on_projectile_collided_with"]
 [connection signal="timeout" from="Projectile/Timeout" to="." method="_on_timeout_timeout"]
 [connection signal="timeout" from="Projectile/Timeout2" to="." method="_on_timeout_2_timeout"]

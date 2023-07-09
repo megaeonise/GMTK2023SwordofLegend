@@ -5,10 +5,11 @@ var speed = 150
 var can_shoot = true
 var hp = 3
 var damage_taken = 0
-var shot_collision = ''
+#var shot_collision = ''
 var can_damage = true
 
-signal player_damage()
+
+#signal player_damage()
 
 func _ready():
 	self.add_collision_exception_with($Projectile)
@@ -33,11 +34,11 @@ func shoot():
 		can_shoot = false
 		$Projectile.velocity = direction*speed
 		$Projectile/Timeout.start()
-		if can_damage == true and shot_collision=='Player':
-			player_damage.emit()
-			can_damage = false
-		elif shot_collision=='Sword':
-			print('here')
+#		if can_damage == true and shot_collision=='Player':
+#			player_damage.emit()
+#			can_damage = false
+#		elif shot_collision=='Sword':
+#			print('here')
 	if look.x>0:
 		get_node("MushroomSprite").set_flip_h(true)
 		get_node("Projectile/ProjectileSprite").set_flip_h(true)
@@ -67,10 +68,21 @@ func _on_sword_attack(damage):
 func _on_sword_body_entered(body):
 	print(hp)
 	hp-=damage_taken
+	damage_taken = 0
 	can_shoot=false
 	$MushroomSprite.play('hurt')
 	$Projectile/Timeout2.start()
 
 
-func _on_projectile_collided_with(object):
-	shot_collision = object
+#func _on_projectile_collided_with(object):
+#	shot_collision = object
+
+
+func _on_sword_parry():
+	print(hp)
+	hp-=1
+	can_shoot=false
+	$Projectile.position = Vector2(0,0)
+	$Projectile.velocity = Vector2(0,0)
+	$MushroomSprite.play('hurt')
+	$Projectile/Timeout2.start()

@@ -330,6 +330,11 @@ speed_scale = 1.7
 wait_time = 0.9
 one_shot = true
 
+[node name="HitStop" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="mode_change" from="." to="Sword" method="_on_player_mode_change"]
+[connection signal="parry" from="Sword" to="." method="_on_sword_parry"]
 [connection signal="animation_finished" from="Sword/SwordSprite" to="Sword" method="_on_sword_sprite_animation_finished"]
 [connection signal="timeout" from="Sword/Buffer" to="Sword" method="_on_buffer_timeout"]

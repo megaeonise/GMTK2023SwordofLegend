@@ -5,7 +5,8 @@ var sword_mode = -1
 var speed = 1000
 var radius = 50
 var attack_anim = 0
-
+var is_attack = false
+signal parry
 #@onready var player_var = get_node("/root/Player")
 #var upgrade_arr = player_var.upgrade_arr
 
@@ -46,11 +47,14 @@ func sword_attack():
 		if get_node('SwordSprite').animation == 'attack' and get_node('SwordSprite').frame>=2 and get_node('SwordSprite').frame<=3:
 			attack.emit(1+(VariableStore.length_upgrade*0.5))
 			get_node('SwordCollision').set_disabled(false)
+			is_attack = true
 		elif get_node('SwordSprite').animation == 'attack2' and get_node('SwordSprite').frame>=1 and get_node('SwordSprite').frame<=2:
 			attack.emit(1+(VariableStore.length_upgrade*0.5))
 			get_node('SwordCollision').set_disabled(false)
+			is_attack = true
 		else:
 			get_node('SwordCollision').set_disabled(true)
+			is_attack = false
 
 
 
@@ -76,3 +80,9 @@ func _on_buffer_timeout():
 	if get_node('SwordSprite').is_playing()==false:
 		get_node('SwordSprite').play('static2')
 		get_node('SwordSprite').pause()
+
+
+func _on_projectile_area_entered(area):
+	if is_attack:
+		parry.emit()
+

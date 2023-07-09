@@ -1,10 +1,6 @@
-extends CharacterBody2D
+extends Area2D
 
-signal collided_with(object)
+var velocity = Vector2(0,0)
 
 func _physics_process(delta):
-	move_and_slide()
-	for collisions in get_slide_collision_count():
-		var collision = get_slide_collision(collisions)
-		collided_with.emit(collision.get_collider().name)
-		print(collision.get_collider().name)
+	position+=velocity*delta

@@ -120,6 +120,17 @@ func direction_finder():
 
 
 
+#
+#func _on_mushroom_player_damage():
+#	hp-=1
 
-func _on_mushroom_player_damage():
+
+func _on_projectile_area_entered(area):
 	hp-=1
+
+
+func _on_sword_parry():
+	$HitStop.start()
+	Engine.time_scale = 0.04
+	await $HitStop.timeout
+	Engine.time_scale = 1

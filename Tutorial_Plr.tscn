@@ -50,5 +50,9 @@ offset_bottom = 0.0
 [connection signal="body_entered" from="Next" to="Next" method="_on_body_entered"]
 [connection signal="attack" from="Player/Sword" to="Mushroom" method="_on_sword_attack"]
 [connection signal="body_entered" from="Player/Sword" to="Mushroom" method="_on_sword_body_entered"]
+[connection signal="parry" from="Player/Sword" to="Mushroom" method="_on_sword_parry"]
+[connection signal="area_entered" from="Mushroom/Projectile" to="Player" method="_on_projectile_area_entered"]
+[connection signal="area_entered" from="Mushroom/Projectile" to="Player/Sword" method="_on_projectile_area_entered"]
 
 [editable path="Player"]
+[editable path="Mushroom"]
