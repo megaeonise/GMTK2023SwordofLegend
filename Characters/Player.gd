@@ -6,6 +6,8 @@ var mode = -1
 var gravity = 200
 var grip = 0
 var on_ground = false
+#sword length/dmg, chain length, grip strength
+var upgrade_arr = [0,0,0]
 
 var length_up = 1
 var grip_up = 1
@@ -20,12 +22,21 @@ func _physics_process(delta):
 	move_and_slide()
 	direction_finder()
 	
+	if Input.is_action_just_pressed('ui_select'):
+		print(upgrade_arr)
+	
+	if Input.is_action_just_pressed('ui_accept'):
+		print('tong')
+		for i in range(3):
+			upgrade_arr[i]+=1
+	
 	
 func sword_move():
 	var character = get_position()
 	var mouse = get_global_mouse_position()
 	var distance_to_mouse = mouse-character
 	var local_mouse = get_local_mouse_position()
+	
 	
 	if not on_ground:
 		if grip>0:
@@ -48,6 +59,8 @@ func sword_move():
 		get_node('HeroSprite').play('cower')
 	
 	if mode==-1:
+		get_node('Sword/SwordSprite').play('static')
+		get_node('Sword/SwordSprite').pause()
 		if abs(distance_to_mouse.x)>=10:
 			if Input.is_action_pressed('Left_Click'):
 				if mouse.y<position.y-100 and grip>0:

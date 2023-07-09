@@ -30,7 +30,6 @@ func sword_move():
 			position.y = player_pos.y+8
 
 func sword_attack():
-	print(get_node('Buffer').get_time_left())
 	if sword_mode ==1:
 		if Input.is_action_just_pressed("Left_Click"):
 			if get_node('SwordSprite').is_playing()==false:
@@ -58,16 +57,15 @@ func _on_player_mode_change(mode):
 
 
 func _on_sword_sprite_animation_finished():
-	if sword_mode==-1:
-		get_node('SwordSprite').play('static')
+#	if sword_mode==-1:
+#		get_node('SwordSprite').play('static')
+#		get_node('SwordSprite').pause()
+	if attack_anim==0:
+		get_node('SwordSprite').play('static2')
 		get_node('SwordSprite').pause()
 	else:
-		if attack_anim==0:
-			get_node('SwordSprite').play('static2')
-			get_node('SwordSprite').pause()
-		else:
-			get_node('SwordSprite').play('static3')
-			get_node('SwordSprite').pause()
+		get_node('SwordSprite').play('static3')
+		get_node('SwordSprite').pause()
 
 
 func _on_buffer_timeout():
